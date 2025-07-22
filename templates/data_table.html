@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="mb-3">📋 Production Data Table</h3>
+<table class="table table-striped table-hover table-bordered text-center">
+  <thead class="table-dark">
+    <tr>
+      <th>Date</th>
+      <th>Machine ID</th>
+      <th>Shift</th>
+      <th>Department</th>
+      <th>Units</th>
+      <th>Uptime</th>
+      <th>Downtime</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in entries %}
+    <tr>
+      <td>{{ row.date }}</td>
+      <td>{{ row.machine_id }}</td>
+      <td>{{ row.shift }}</td>
+      <td>{{ row.department }}</td>
+      <td>{{ row.units }}</td>
+      <td>{{ row.uptime_hrs }}</td>
+      <td>{{ row.downtime }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

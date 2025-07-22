@@ -1,0 +1,48 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(120deg,#dbe6e4 0%, #b3c0d6 100%);
+  background-size: 400% 400%;
+  animation: bgmove 12s ease-in-out infinite;
+}
+@keyframes bgmove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glass {
+  background: rgba(255,255,255,0.95);
+  border-radius: 18px;
+  padding: 32px 28px;
+  box-shadow: 0 12px 36px rgba(44, 62, 80, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.dashboard-bg {
+  min-height: 92vh;
+  padding: 25px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 40px rgba(44,62,80,0.13);
+}
+
+.dashboard-summary {
+  background: linear-gradient(112deg, #6be9f5e3 0%, #51a7f3 100%);
+  color: white;
+  border-radius: 13px;
+  padding: 13px 26px;
+  margin-bottom: 24px;
+  font-size: 1.1em;
+  box-shadow: 0 2px 20px rgba(44,62,80,0.14);
+}
+
+.chart-title {
+  font-weight: 600;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.btn:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transform: scale(1.05);
+}

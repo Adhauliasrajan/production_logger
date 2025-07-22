@@ -1,0 +1,11 @@
+<form method="get" action="{{ url_for('export_csv') }}" class="row g-2">
+  <div class="col-auto">
+    <input type="date" name="start" class="form-control" required>
+  </div>
+  <div class="col-auto">
+    <input type="date" name="end" class="form-control" required>
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-success">Download CSV</button>
+  </div>
+</form>

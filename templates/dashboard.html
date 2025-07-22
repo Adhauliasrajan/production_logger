@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="dashboard-bg">
+
+  <!-- Top bar with buttons -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="fw-bold">📈 Dashboard</h3>
+    <div>
+      <a href="{{ url_for('add_data') }}" class="btn btn-outline-primary me-2">➕ Add Data</a>
+      <a href="{{ url_for('data_table') }}" class="btn btn-outline-secondary me-2">📋 View Table</a>
+      <!-- Export Modal Trigger -->
+      <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#exportModal">⬇ Export CSV</button>
+    </div>
+  </div>
+
+  <!-- Production Summary Bar Chart -->
+  <div class="dashboard-summary mb-4 shadow animate__animated animate__fadeInDown">
+    <h4 class="mb-2" style="font-weight:700;">📅 Production Summary by Day</h4>
+    <canvas id="summaryBar" height="110"></canvas>
+  </div>
+
+  <!-- Main Chart Row -->
+  <div class="row g-4 dashboard-charts">
+    <div class="col-md-4">
+      <div class="card p-3 shadow border-0">
+        <h6 class="chart-title mb-2">📊 Units & Uptime by Date</h6>
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+    <div class="col-md-4" style="max-width: 320px;">
+      <div class="card p-3 shadow border-0">
+        <h6 class="chart-title mb-2">🏭 Output by Department</h6>
+        <canvas id="pieChart" height="160"></canvas>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3 shadow border-0">
+        <h6 class="chart-title mb-2">⏱️ Downtime Trend</h6>
+        <canvas id="lineChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Export Modal -->
+<div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form class="modal-content" method="get" action="{{ url_for('export_csv') }}">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exportModalLabel">Export Production Data (Date Range)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body row g-3">
+        <div class="col-md-6">
+          <label class="form-label">From Date:</label>
+          <input type="date" name="start" class="form-control" required>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">To Date:</label>
+          <input type="date" name="end" class="form-control" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success w-100">Download CSV</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Chart Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='charts.js') }}"></script>
+<script>
+  renderSummaryBar({{ summary_labels|tojson }}, {{ summary_values|tojson }});
+  renderBarChart({{ bar_labels|tojson }}, {{ bar_values|tojson }}, {{ uptime_values|tojson }});
+  renderPieChart({{ pie_labels|tojson }}, {{ pie_values|tojson }});
+  renderLineChart({{ line_labels|tojson }}, {{ line_values|tojson }});
+</script>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="login-bg"></div>
+<div class="glass p-4 shadow-lg mw-50 mx-auto rounded animate__animated animate__fadeIn" style="position:relative;z-index:2;">
+  <h3 class="text-center mb-4">👤 Login</h3>
+  <form method="POST">
+    <input name="username" class="form-control mb-3" placeholder="Username" required>
+    <input type="password" name="password" class="form-control mb-3" placeholder="Password" required>
+    <button class="btn btn-success w-100">Login</button>
+    <p class="text-center mt-3">New? <a href="{{ url_for('register') }}">Register Here</a></p>
+  </form>
+</div>
+{% endblock %}
