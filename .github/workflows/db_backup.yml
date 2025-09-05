@@ -2,7 +2,8 @@ name: Scheduled Database Backup and Upload
 
 on:
   schedule:
-    - cron: '3 20 * * *'  # Runs daily at 20:03 UTC = 1:33 AM IST
+    - cron: '3 20 * * *'  # 1:33 AM IST daily
+  workflow_dispatch:
 
 jobs:
   backup_and_upload:
