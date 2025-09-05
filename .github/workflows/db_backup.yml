@@ -2,7 +2,8 @@ name: Scheduled Database Backup
 
 on:
   schedule:
-    - cron: '0 1 * * *'   # Runs daily at 1 AM UTC
+    - cron: '0 12 * * *'  # Runs daily at 12:00 UTC = 5:30 PM IST
+
 
 jobs:
   backup_job:
