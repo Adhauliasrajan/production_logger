@@ -1,12 +1,11 @@
-name: Scheduled Database Backup
+name: Scheduled Database Backup and Upload
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # Runs daily at 12:00 UTC = 5:30 PM IST
-
+    - cron: '13 13 * * *'  # Runs daily at 13:13 UTC = 6:43 PM IST
 
 jobs:
-  backup_job:
+  backup_and_upload:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,15 +17,16 @@ jobs:
         python-version: 3.11
 
     - name: Install dependencies
-      run: pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+      run: |
+        pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 
-    - name: Create Google credentials file
+    - name: Reconstruct credentials.json file
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-      run: echo "$GOOGLE_CREDENTIALS" > service_account.json
+        GOOGLE_OAUTH_CREDENTIALS: ${{ secrets.GOOGLE_OAUTH_CREDENTIALS }}
+      run: echo "$GOOGLE_OAUTH_CREDENTIALS" > credentials.json
 
-    - name: Run DB backup script
+    - name: Run backup script
       run: python backup_db.py
 
-    - name: Upload backup to Google Drive
-      run: python upload_to_gdrive.py
+    - name: Upload backup using OAuth script
+      run: python upload_to_gdrive_oauth.py
