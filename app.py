@@ -130,4 +130,5 @@ def export_csv():
         headers={"Content-Disposition": "attachment; filename=production_data.csv"}
     )
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
