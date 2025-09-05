@@ -2,7 +2,7 @@ name: Scheduled Database Backup and Upload
 
 on:
   schedule:
-    - cron: '3 20 * * *'  # 1:33 AM IST daily
+    - cron: '26 20 * * *'  # Runs daily at 20:26 UTC, which is 1:56 AM IST
   workflow_dispatch:
 
 jobs:
@@ -32,7 +32,6 @@ jobs:
 
       - name: Run backup script
         run: python backup_db.py
-
 
       - name: Upload backup to Google Drive
         run: python upload_to_gdrive_oauth.py
