@@ -2,7 +2,7 @@ name: Scheduled Database Backup and Upload
 
 on:
   schedule:
-    - cron: '30 19 * * *'  # Runs daily at 1:00 AM IST
+    - cron: '5 18 * * *'  # Runs daily at 18:05 UTC = 11:35 PM IST
 
 jobs:
   backup_and_upload:
