@@ -38,3 +38,7 @@ jobs:
 
       - name: Upload backup to Google Drive
         run: python upload_to_gdrive_oauth.py
+
+      - name: Ping Healthchecks on Successful Backup
+        run: curl -fsS --retry 3 https://hc-ping.com/bdd055d5-dfeb-4e0d-acf3-f6c063e7a8f4
+
